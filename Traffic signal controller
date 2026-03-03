@@ -1,0 +1,20 @@
+public class TrafficSignalController {
+    public static void main(String[] args) {
+
+        int signalCode = 3;
+
+        switch(signalCode) {
+            case 1:
+                System.out.println("Stop");
+                break;
+            case 2:
+                System.out.println("Ready");
+                break;
+            case 3:
+                System.out.println("Go");
+                break;
+            default:
+                System.out.println("Invalid Signal Code");
+        }
+    }
+}
