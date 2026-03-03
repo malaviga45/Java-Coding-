@@ -1,0 +1,77 @@
+import java.util.Scanner;
+
+// Base class
+class Shape {
+    void area() {
+        System.out.println("Area not defined");
+    }
+}
+
+// Rectangle class
+class Rectangle extends Shape {
+    double length, breadth;
+
+    Rectangle(double length, double breadth) {
+        this.length = length;
+        this.breadth = breadth;
+    }
+
+    @Override
+    void area() {
+        System.out.println(length * breadth);
+    }
+}
+
+// Circle class
+class Circle extends Shape {
+    double radius;
+
+    Circle(double radius) {
+        this.radius = radius;
+    }
+
+    @Override
+    void area() {
+        System.out.println(3.14 * radius * radius);
+    }
+}
+
+// Main class
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter Shape (Rectangle/Circle): ");
+        String choice = sc.nextLine();
+
+        Shape shape;
+
+        if (choice.equalsIgnoreCase("Rectangle")) {
+
+            System.out.print("Enter length: ");
+            double length = sc.nextDouble();
+
+            System.out.print("Enter breadth: ");
+            double breadth = sc.nextDouble();
+
+            shape = new Rectangle(length, breadth);
+
+        } else if (choice.equalsIgnoreCase("Circle")) {
+
+            System.out.print("Enter radius: ");
+            double radius = sc.nextDouble();
+
+            shape = new Circle(radius);
+
+        } else {
+            System.out.println("Invalid Shape");
+            sc.close();
+            return;
+        }
+
+        shape.area();   // Polymorphism
+
+        sc.close();
+    }
+}
