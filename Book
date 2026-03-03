@@ -1,0 +1,71 @@
+import java.util.Scanner;
+
+class Book {
+
+    int bookId;
+    String title;
+    boolean isIssued;
+
+    Book(int bookId, String title, boolean isIssued) {
+        this.bookId = bookId;
+        this.title = title;
+        this.isIssued = isIssued;
+    }
+
+    void issueBook() {
+        if (!isIssued) {
+            isIssued = true;
+            System.out.println("Book Issued");
+        } else {
+            System.out.println("Book Already Issued");
+        }
+    }
+
+    void returnBook() {
+        if (isIssued) {
+            isIssued = false;
+            System.out.println("Book Returned");
+        } else {
+            System.out.println("Book Already Available");
+        }
+    }
+
+    void printStatus() {
+        if (isIssued) {
+            System.out.println("Status: Issued");
+        } else {
+            System.out.println("Status: Available");
+        }
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter Book ID: ");
+        int id = sc.nextInt();
+        sc.nextLine(); // consume newline
+
+        System.out.print("Enter Book Title: ");
+        String title = sc.nextLine();
+
+        System.out.print("Is Book Issued (true/false): ");
+        boolean status = sc.nextBoolean();
+
+        sc.nextLine(); // consume newline
+        System.out.print("Enter Operation (issue/return): ");
+        String operation = sc.nextLine();
+
+        Book book = new Book(id, title, status);
+
+        if (operation.equalsIgnoreCase("issue")) {
+            book.issueBook();
+        } else if (operation.equalsIgnoreCase("return")) {
+            book.returnBook();
+        } else {
+            System.out.println("Invalid Operation");
+        }
+
+        sc.close();
+    }
+}
