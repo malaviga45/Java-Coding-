@@ -1,0 +1,40 @@
+class BankAccount {
+
+    int accountNumber;
+    double balance;
+
+    // Constructor
+    BankAccount(int accountNumber, double balance) {
+        this.accountNumber = accountNumber;
+        this.balance = balance;
+    }
+
+    // Deposit method
+    void deposit(double amount) {
+        balance += amount;
+    }
+
+    // Withdraw method
+    void withdraw(double amount) {
+        if (amount <= balance) {
+            balance -= amount;
+        } else {
+            System.out.println("Insufficient Balance");
+        }
+    }
+
+    // Display balance
+    void displayBalance() {
+        System.out.println(balance);
+    }
+
+    public static void main(String[] args) {
+
+        BankAccount account = new BankAccount(101, 5000);
+
+        account.deposit(2000);
+        account.withdraw(3000);
+
+        account.displayBalance();
+    }
+}
