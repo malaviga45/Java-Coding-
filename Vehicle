@@ -1,0 +1,23 @@
+class Vehicle {
+
+    void fuelType() {
+        System.out.println("Diesel");
+    }
+}
+
+class Car extends Vehicle {
+
+    // Overriding method
+    @Override
+    void fuelType() {
+        System.out.println("Petrol");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        Vehicle v = new Car();   // Polymorphism
+        v.fuelType();
+    }
+}
