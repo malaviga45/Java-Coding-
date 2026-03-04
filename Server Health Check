@@ -1,0 +1,34 @@
+class ServerHealthCheck extends Thread {
+
+    public void run() {
+        try {
+            while (true) {
+                System.out.println("Checking server status...");
+
+                // Simulated server check
+                boolean serverUp = checkServer();
+
+                if (serverUp) {
+                    System.out.println("Server is UP");
+                } else {
+                    System.out.println("Server is DOWN");
+                }
+
+                // Pause for 5 seconds
+                Thread.sleep(5000);
+            }
+        } catch (InterruptedException e) {
+            System.out.println("Health check interrupted");
+        }
+    }
+
+    boolean checkServer() {
+        // Simulated check (always true for demo)
+        return true;
+    }
+
+    public static void main(String args[]) {
+        ServerHealthCheck shc = new ServerHealthCheck();
+        shc.start();
+    }
+}
