@@ -1,0 +1,96 @@
+package mypackages;
+
+public class Secure {
+
+    private int accountNo;
+    private String holderName;
+    private int pin;
+    private double balance;
+
+    // Account creation
+    public void createAccount(int accNo, String name, int pin, double bal) {
+        this.accountNo = accNo;
+        this.holderName = name;
+        this.pin = pin;
+        this.balance = bal;
+
+        System.out.println("Account Created Successfully");
+    }
+
+    // PIN validation
+    private boolean validatePin(int enteredPin) {
+        return this.pin == enteredPin;
+    }
+
+    // Deposit
+    public void deposit(double amount) {
+        balance += amount;
+        System.out.println("Amount Deposited : " + amount);
+    }
+
+    // Withdraw with security
+    public void withdraw(double amount, int enteredPin) {
+        if (!validatePin(enteredPin)) {
+            System.out.println("Invalid PIN! Transaction Failed");
+            return;
+        }
+
+        if (amount > balance) {
+            System.out.println("Insufficient Balance");
+        } else {
+            balance -= amount;
+            System.out.println("Withdraw Successful : " + amount);
+        }
+    }
+
+    // Balance check
+    public void checkBalance(int enteredPin) {
+        if (!validatePin(enteredPin)) {
+            System.out.println("Invalid PIN! Access Denied");
+        } else {
+            System.out.println("Current Balance : " + balance);
+        }
+    }
+
+    // Display account info
+    public void displayAccount() {
+        System.out.println("Account No   : " + accountNo);
+        System.out.println("Holder Name : " + holderName);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+import mypackages.Secure;
+
+public class BankMain {
+    public static void main(String[] args) {
+
+        Secure bank = new Secure();
+
+        System.out.println("----- SECURE BANKING APPLICATION -----");
+
+        bank.createAccount(1001, "Bavana", 1234, 5000);
+        bank.displayAccount();
+
+        System.out.println();
+
+        bank.deposit(2000);
+        System.out.println();
+
+        bank.withdraw(3000, 1234);   // correct PIN
+        System.out.println();
+
+        bank.checkBalance(1234);     // correct PIN
+        System.out.println();
+
+        bank.withdraw(1000, 1111);   // wrong PIN
+    }
+}
