@@ -1,0 +1,66 @@
+package mypackages;
+
+// Interface
+interface oShop {
+    void addProduct(String name, double price);
+    void buyProduct(int qty);
+    void showBill();
+}
+
+// Implementation class
+public class Shop implements oShop {
+
+    private String productName;
+    private double price;
+    private int quantity;
+    private double total;
+
+    // Add product to cart
+    public void addProduct(String name, double price) {
+        this.productName = name;
+        this.price = price;
+        System.out.println("Product Added : " + name);
+        System.out.println("Price         : " + price);
+    }
+
+    // Buy product
+    public void buyProduct(int qty) {
+        this.quantity = qty;
+        total = price * quantity;
+        System.out.println("Quantity      : " + quantity);
+    }
+
+    // Show bill
+    public void showBill() {
+        System.out.println("----- BILL DETAILS -----");
+        System.out.println("Product Name  : " + productName);
+        System.out.println("Total Amount  : " + total);
+    }
+}
+
+
+
+
+
+
+
+
+
+import mypackages.Shop;
+
+public class ShopMain {
+    public static void main(String[] args) {
+
+        Shop shop = new Shop();
+
+        System.out.println("----- ONLINE SHOPPING SYSTEM -----");
+
+        shop.addProduct("Mobile Phone", 15000);
+        System.out.println();
+
+        shop.buyProduct(2);
+        System.out.println();
+
+        shop.showBill();
+    }
+}
