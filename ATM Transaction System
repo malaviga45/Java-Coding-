@@ -1,0 +1,60 @@
+import java.io.FileWriter;
+import java.io.IOException;
+
+class ATM {
+
+    int balance = 5000;
+
+    // Withdraw method
+    void withdraw(int amount) throws Exception {
+        if (amount <= 0) {
+            throw new Exception("Invalid amount");
+        }
+        if (amount > balance) {
+            throw new Exception("Insufficient balance");
+        }
+        balance -= amount;
+        writeToFile("Withdrawn: " + amount);
+        System.out.println("Withdraw successful");
+    }
+
+    // Deposit method
+    void deposit(int amount) throws Exception {
+        if (amount <= 0) {
+            throw new Exception("Invalid deposit amount");
+        }
+        balance += amount;
+        writeToFile("Deposited: " + amount);
+        System.out.println("Deposit successful");
+    }
+
+    // File handling method
+    void writeToFile(String message) throws IOException {
+        FileWriter fw = new FileWriter("transaction.txt", true);
+        fw.write(message + "\n");
+        fw.close();
+    }
+
+    // Display balance
+    void showBalance() {
+        System.out.println("Current Balance: " + balance);
+    }
+}
+
+public class ATMSystem {
+    public static void main(String[] args) {
+
+        ATM atm = new ATM();
+
+        try {
+            atm.showBalance();
+            atm.deposit(2000);
+            atm.withdraw(9000);   // error case
+        } catch (Exception e) {
+            System.out.println("Transaction Error: " + e.getMessage());
+        }
+
+        atm.showBalance();
+        System.out.println("ATM Transaction Completed");
+    }
+}
