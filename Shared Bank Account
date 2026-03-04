@@ -1,0 +1,51 @@
+class BankAccount {
+
+    int balance = 1000;
+
+    // synchronized method
+    synchronized void withdraw(int amount) {
+
+        System.out.println(Thread.currentThread().getName()
+                + " trying to withdraw " + amount);
+
+        if (balance >= amount) {
+            System.out.println("Processing withdrawal...");
+            balance = balance - amount;
+            System.out.println("Withdrawal successful. Remaining balance: " + balance);
+        } else {
+            System.out.println("Insufficient balance");
+        }
+    }
+}
+
+class Customer extends Thread {
+
+    BankAccount acc;
+    int amount;
+
+    Customer(BankAccount acc, int amount) {
+        this.acc = acc;
+        this.amount = amount;
+    }
+
+    public void run() {
+        acc.withdraw(amount);
+    }
+}
+
+public class SharedAccount {
+
+    public static void main(String[] args) {
+
+        BankAccount account = new BankAccount();
+
+        Customer c1 = new Customer(account, 700);
+        Customer c2 = new Customer(account, 500);
+
+        c1.setName("Customer-1");
+        c2.setName("Customer-2");
+
+        c1.start();
+        c2.start();
+    }
+}
