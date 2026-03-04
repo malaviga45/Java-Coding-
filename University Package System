@@ -1,0 +1,48 @@
+package mypackages;
+
+public class Uni {
+
+    // Student details
+    public void studentDetails(int id, String name) {
+        System.out.println("Student ID   : " + id);
+        System.out.println("Student Name : " + name);
+    }
+
+    // Staff details
+    public void staffDetails(int id, String name) {
+        System.out.println("Staff ID     : " + id);
+        System.out.println("Staff Name   : " + name);
+    }
+
+    // Course details
+    public void courseDetails(String code, String course) {
+        System.out.println("Course Code  : " + code);
+        System.out.println("Course Name  : " + course);
+    }
+}
+
+
+
+
+
+
+
+
+import mypackages.Uni;
+
+public class Unimain {
+    public static void main(String[] args) {
+
+        Uni u = new Uni();
+
+        System.out.println("----- UNIVERSITY MANAGEMENT SYSTEM -----");
+
+        u.studentDetails(101, "Bavana");
+        System.out.println();
+
+        u.staffDetails(501, "Dr. Kumar");
+        System.out.println();
+
+        u.courseDetails("CS101", "Java Programming");
+    }
+}
