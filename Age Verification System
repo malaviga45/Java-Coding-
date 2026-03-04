@@ -1,0 +1,47 @@
+package mypackages;
+
+public class AgeVerifier {
+
+    private int age;
+
+    // Set age
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    // Verify age
+    public void verify() {
+        if (age >= 18) {
+            System.out.println("Age : " + age);
+            System.out.println("Status : Eligible");
+        } else {
+            System.out.println("Age : " + age);
+            System.out.println("Status : Not Eligible");
+        }
+    }
+}
+
+
+
+
+
+
+
+import mypackages.AgeVerifier;
+
+public class AgeMain {
+    public static void main(String[] args) {
+
+        AgeVerifier av = new AgeVerifier();
+
+        System.out.println("----- AGE VERIFICATION SYSTEM -----");
+
+        av.setAge(20);
+        av.verify();
+
+        System.out.println();
+
+        av.setAge(15);
+        av.verify();
+    }
+}
