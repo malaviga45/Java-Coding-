@@ -1,0 +1,38 @@
+import java.io.File;
+import java.io.FileReader;
+import java.net.InetAddress;
+
+public class NetworkExceptionDemo {
+
+    public static void main(String[] args) {
+
+        /* ----------- NETWORK CONNECTION ----------- */
+        try {
+            InetAddress address = InetAddress.getByName("www.google.com");
+            System.out.println("Connected to Host : " + address.getHostName());
+            System.out.println("IP Address        : " + address.getHostAddress());
+        } catch (Exception e) {
+            System.out.println("Network Error : Unable to connect");
+        }
+
+        /* ----------- ARITHMETIC EXCEPTION ----------- */
+        try {
+            int a = 10, b = 0;
+            int result = a / b;
+            System.out.println("Result : " + result);
+        } catch (ArithmeticException e) {
+            System.out.println("Arithmetic Error : Division by zero");
+        }
+
+        /* ----------- FILE HANDLING EXCEPTION ----------- */
+        try {
+            File file = new File("data.txt"); // file not available
+            FileReader fr = new FileReader(file);
+            System.out.println("File opened successfully");
+        } catch (Exception e) {
+            System.out.println("File Error : File not found");
+        }
+
+        System.out.println("Program completed successfully");
+    }
+}
