@@ -1,0 +1,78 @@
+package mypackages;
+
+public class Calculator {
+
+    // Addition
+    public void add(int a, int b) {
+        System.out.println("Addition : " + (a + b));
+    }
+
+    // Subtraction
+    public void subtract(int a, int b) {
+        System.out.println("Subtraction : " + (a - b));
+    }
+
+    // Multiplication
+    public void multiply(int a, int b) {
+        System.out.println("Multiplication : " + (a * b));
+    }
+
+    // Division with exception
+    public void divide(int a, int b) {
+        try {
+            int result = a / b;
+            System.out.println("Division : " + result);
+        } catch (ArithmeticException e) {
+            System.out.println("Error : Cannot divide by zero");
+        }
+    }
+
+    // Multiple exception demo
+    public void exceptionDemo() {
+        try {
+            int arr[] = new int[3];
+            arr[5] = 10;   // ArrayIndexOutOfBoundsException
+
+            int x = Integer.parseInt("ABC"); // NumberFormatException
+        }
+        catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Error : Array Index Out of Range");
+        }
+        catch (NumberFormatException e) {
+            System.out.println("Error : Invalid Number Format");
+        }
+        catch (Exception e) {
+            System.out.println("General Exception Occurred");
+        }
+        finally {
+            System.out.println("Exception Handling Completed");
+        }
+    }
+}
+
+
+
+
+
+
+
+import mypackages.Calculator;
+
+public class CalcMain {
+    public static void main(String[] args) {
+
+        Calculator calc = new Calculator();
+
+        System.out.println("----- CALCULATOR WITH MULTIPLE EXCEPTIONS -----");
+
+        calc.add(10, 5);
+        calc.subtract(20, 8);
+        calc.multiply(4, 3);
+
+        System.out.println();
+        calc.divide(10, 0);   // ArithmeticException
+
+        System.out.println();
+        calc.exceptionDemo(); // Multiple exceptions
+    }
+}
