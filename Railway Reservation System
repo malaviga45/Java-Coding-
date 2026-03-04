@@ -1,0 +1,60 @@
+import java.io.FileWriter;
+import java.io.IOException;
+
+class Railway {
+
+    int availableSeats = 20;
+    int ticketPrice = 100;
+
+    // Reservation method
+    void reserve(int seats) throws Exception {
+
+        // Arithmetic Exception (demo)
+        int totalAmount = ticketPrice * seats;
+        int average = totalAmount / seats; // seats = 0 → Arithmetic error
+
+        if (seats <= 0) {
+            throw new Exception("Invalid number of seats");
+        }
+
+        if (seats > availableSeats) {
+            throw new Exception("Seats not available");
+        }
+
+        availableSeats -= seats;
+        writeToFile("Booked Seats: " + seats + " | Amount: " + totalAmount);
+
+        System.out.println("Seats booked successfully");
+        System.out.println("Total Amount: " + totalAmount);
+    }
+
+    // File handling
+    void writeToFile(String msg) throws IOException {
+        FileWriter fw = new FileWriter("reservation.txt", true);
+        fw.write(msg + "\n");
+        fw.close();
+    }
+
+    void showSeats() {
+        System.out.println("Available Seats: " + availableSeats);
+    }
+}
+
+public class RailwayReservation {
+    public static void main(String[] args) {
+
+        Railway r = new Railway();
+
+        try {
+            r.showSeats();
+            r.reserve(0);   // Arithmetic error case
+        } catch (ArithmeticException e) {
+            System.out.println("Arithmetic Error: Division by zero");
+        } catch (Exception e) {
+            System.out.println("Reservation Error: " + e.getMessage());
+        }
+
+        r.showSeats();
+        System.out.println("Railway reservation completed");
+    }
+}
